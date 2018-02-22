@@ -1,0 +1,38 @@
+body {
+    background-color:#23A6D5;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+}
+
+p{
+    font-family:Open Sans;
+    font-size: 15px;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	
+}
+
+#draw{
+	
+    position: absolute;
+    top:125px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin:auto;
+}
+
+h4 {
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+

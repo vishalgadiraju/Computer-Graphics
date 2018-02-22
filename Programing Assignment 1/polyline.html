@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="styles.css">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+		
+        <title> Polyline</title>  
+    </head>
+    
+    <body>
+        
+       <canvas id="draw" width="600px" height="400px" 
+                style="background-color:white; "></canvas>
+				
+				<form name="input">
+					 <h2>Polyline</h2>
+					<p>Enter number of sides: <input type="text" id="totalsides"><br><br>
+					
+						
+						Thickness:
+						<select id="selection">
+						<option value="2">2</option>
+						  <option value="">10</option>
+						  <option value="20">20</option>
+						  <option value="30">30</option>
+						</select>
+				
+						Color:
+						<select id="selection1">
+						<option value="#fa0cb7">Default</option>
+						  <option value="#33cc33">Green</option>
+						  <option value="#ff3300">Red</option>
+						  <option value="#0033cc">Blue</option>
+						</select><br><br>
+						<input type="button" value="Draw"  onclick="polyline()">
+						<input type="button" value="Clear"  onclick="clr()">
+				</form></p>
+				
+				<script>
+				
+				var a= document.getElementById('draw');
+				var b = a.getContext('2d');
+				
+				function clr()
+				{
+					
+					b.clearRect(0,0,draw.width,draw.height);
+				}
+
+				
+				function polyline(){
+					var totalsides= document.getElementById('totalsides').value;
+					b.beginPath();
+					
+					for(var i=0;i<totalsides;i++)
+					{
+						var x=Math.random()*250;
+						var y=Math.random()*250;
+						b.fillStyle="#0000ff";
+						b.fillRect(x,y,3,3);
+					
+						b.lineTo(x,y);
+						
+					}
+					b.lineWidth= document.getElementById("selection").value;
+					b.strokeStyle=document.getElementById("selection1").value;
+					b.stroke();
+				}
+				
+				</script>
+				
+			</body>
+			
+			</html>

@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="styles.css">
+       
+		
+        <title> Polygon </title>  
+    </head>
+    
+    <body>
+        
+       <canvas id="draw" width="600px" height="400px" 
+                style="background-color:white;"></canvas>
+				
+				
+				<form name="input">
+					 <h2>Polygon</h2>
+					<p>Enter number of sides: <input type="text" id="totalsides" placeholder="Enter minimum of 4 sides"><br><br>
+					Thickness:
+					<select id="selection">
+					<option value="2">2</option>
+					  <option value="">10</option>
+					  <option value="20">20</option>
+					  <option value="30">30</option>
+					</select>
+			
+					Color:
+					<select id="selection1">
+					<option value="#fa0cb7">Default</option>
+					  <option value="#33cc33">Green</option>
+					  <option value="#ff3300">Red</option>
+					  <option value="#0033cc">Blue</option>
+					</select><br><br>
+					
+					<input type="button" value="Draw"  onclick="polygon()">
+					<input type="button" value="Clear"  onclick="clr()">
+				</p>
+					
+					
+				</form>
+				
+				
+				<script>
+				
+				 var a=document.getElementById('draw');
+				var b=a.getContext('2d');
+				
+				function clr()
+				{
+					
+					b.clearRect(0,0,draw.width,draw.height);
+				}
+				
+				
+				function polygon()
+				{
+				   
+					a.width=a.width;
+					
+					var totalsides=document.getElementById('totalsides').value;
+					var size=100;
+					var xcen=a.width/2;
+					var ycen=a.height/2;
+					b.beginPath();
+					b.moveTo(xcen+size*Math.cos(0),ycen+size*Math.sin(0));       
+
+					for (var i = 1; i <= totalsides;i += 1) 
+					{
+					    b.lineTo (xcen + size * Math.cos(i * 2 * Math.PI/totalsides), ycen + size * Math.sin(i * 2 * Math.PI / totalsides));
+					}
+					
+					b.lineWidth= document.getElementById("selection").value;
+					b.strokeStyle=document.getElementById("selection1").value;
+					b.stroke();
+				}
+				
+				</script>
+				
+			</body>
+			
+			</html>

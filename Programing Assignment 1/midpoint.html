@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="midpoint_algo.js"></script>
+        <title> Midpoint Algorithm</title>  
+    </head>
+    
+    <body>
+       <p> <h2> <center>Implementation of Midpoint Algorithm </center> </h2> </p>
+                   
+    </td> <td>
+    <form name="shapes">
+        <h3> Select an Option </h3>
+        <p> <input type="radio" name="shapes" value="0" title="line"checked> Line   
+            <input type="radio" name="shapes" value="1" title="circle"> Circle   
+            <input type="radio" name="shapes" value="2" title="ellipse"> Ellipse    
+            
+        <p><input type="hidden" name="enil" value="0" onClick="plotCurve()" title="x"><br></p>
+        <p><input type="hidden" name="enil" value="1" onClick="plotCurve()" title="y"><br></p>
+        <p><input type="hidden" name="enil" value="2" onClick="plotCurve()" title="z">
+           <input type="hidden" name="width" value="3.0" size="1" readonly title="pixels">
+      <input type="button" value="Clear"  onclick="clr()"></p>
+       
+     
+    
+<p><b>Note:</b> Click clear to refresh the page and implement the drawing in the above mentioned colors</p> 
+    
+        <p><center id="pos"></center></p>
+    </form>
+    
+	
+</td></tr></table>
+
+<canvas id="draw" width="600px" height="280px" 
+                style="background-color:white; cursor:crosshair;"></canvas>
+
+        <script type ="text/javascript">
+
+var a= document.getElementById('draw');
+var b = a.getContext('2d');
+function clr()
+{
+	
+	b.clearRect(0,0,draw.width,draw.height);
+}
+            
+            function getMousePos(canvas,evt)
+            {
+                var rect=canvas.getBoundingClientRect();
+                return{x:parseInt((evt.clientX-rect.left)/zoom), y:parseInt((evt.clientY-rect.top)/zoom)};
+            }
+            
+            function setPixel(x, y) 
+            {
+                context.fillStyle = "#fa0cb7";
+                context.fillRect(x*zoom,y*zoom,zoom,zoom);
+            }
+            function setPixelAA(x, y, i)
+            {
+                i = 1-i/255;
+                if (context.getImageData(x*zoom,y*zoom,1,1).data[3] > i) return;
+                context.fillStyle = 'rgba(0,0,0,'+i+')';
+                context.fillRect(x*zoom,y*zoom,zoom,zoom);
+            }
+            
+            function plotCurve() 
+            {
+         
+              var i, wd = eval(document.shapes.width.value);
+              zoom = 2;
+              for (i = 0; i < document.shapes.shapes.length; i++)
+              if (document.shapes.shapes[i].checked) break;
+              i = eval(document.shapes.shapes[i].value)*3;
+              if (document.shapes.enil[1].checked) i++;
+              if (document.shapes.enil[2].checked) i += 2;
+              canvas.width = canvas.width;
+              context.fillStyle = "#fa0cb7";
+              context.fill();
+            
+            switch(i)
+            {
+                case 0:
+                plotLine(P1.x,P1.y,P2.x,P2.y); 
+                break;
+                
+                case 1:
+                plotLineAA(P1.x,P1.y,P2.x,P2.y);
+                break;
+                
+                case 3:
+                plotCircle(P1.x,P1.y,Math.abs(P1.x-P2.x));
+                break;
+                
+                case 4:
+                plotCircleAA(P1.x,P1.y,Math.abs(P1.x-P2.x));
+                break;
+                
+                case 6:
+                plotEllipseRect(P1.x,P1.y,P2.x,P2.y);
+                break;
+            }
+        
+            context.fillStyle = "#fa0cb7";
+            context.fillRect(P1.x*zoom,P1.y*zoom,zoom,zoom);
+            context.fillRect(P2.x*zoom,P2.y*zoom,zoom,zoom);
+
+            }
+            var canvas = document.getElementById('draw');
+            var context = canvas.getContext('2d');
+            var zoom = 3;
+            var point = 0; 
+            var P1, P2, P3, P4;
+
+            canvas.addEventListener('mousedown', function(evt) 
+            {
+            var mousePos = getMousePos(canvas, evt), i;
+            evt.preventDefault();
+            if (point++ == 0) P1 = mousePos;
+            }, false);
+            canvas.addEventListener('mouseup', function(evt) {
+            var i;
+            for (i = 0; i < document.shapes.shapes.length; i++)
+            if (document.shapes.shapes[i].checked) break;
+            i = eval(document.shapes.shapes[i].value);
+            if (point++ > 2 || i < 3) point = 0;
+            }, false);
+
+            canvas.addEventListener('mousemove', function(evt) {
+            var mousePos = getMousePos(canvas, evt), i = point+1;
+            if (point == 0) return;
+            if (point < 2) P2 = mousePos;
+            if (point < 3) P3 = mousePos;
+            P4 = mousePos;
+            plotCurve();
+            }, false);
+    </script>  
+    <br/>
+  </body>
+        
+</html>

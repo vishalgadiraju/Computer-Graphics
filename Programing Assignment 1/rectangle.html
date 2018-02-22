@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="styles.css">	
+        <title> Rectangle </title>  
+    </head>
+    <body>			
+	<form name="input">
+		<h2> Rectangle </h2>
+		<p>X1: <input type="text" id="x1"><br><br>
+		Y1: <input type="text" id="y1"><br><br>
+		X2: <input type="text" id="x2"><br><br>
+		Y2: <input type="text" id="y2"><br><br>
+					
+		Thickness:
+		<select id="selection">
+		<option value="2">2</option>
+		<option value="">10</option>
+		<option value="20">20</option>
+		</select>
+				
+		Color:
+		<select id="color">
+		<option value="#fa0cb7">Default</option>
+		<option value="#33cc33">Green</option>
+		<option value="#ff3300">Red</option>
+		<option value="#0033cc">Blue</option>
+		</select> <br><br>
+		<input type="button" value="Draw"  onclick="rectangle()">
+		<input type="button" value="Clear"  onclick="clr()">
+				
+	</form></p>
+
+	<canvas id="draw" width="650px" height="250px" 
+                style="background-color:white;"></canvas>
+				
+		<br>
+		<br>
+		<br>
+		<script>
+				var canvas= document.getElementById('draw');
+				var context = canvas.getContext('2d');
+				
+				function clr()
+				{
+					
+				context.clearRect(0,0,draw.width,draw.height);
+				}
+				
+				function rectangle()
+				{
+					var x1=document.getElementById('x1').value;
+					var y1=document.getElementById('y1').value;
+					var x2=document.getElementById('x2').value;
+					var y2=document.getElementById('y2').value;
+					
+					context.strokeStyle=document.getElementById("color").value;
+				    context.rect(x1,y1,x2,y2);
+					context.stroke();
+					context.lineWidth=document.getElementById("selection").value;
+					
+				}
+                
+		</script>
+				
+				
+	</body>
+</html>
