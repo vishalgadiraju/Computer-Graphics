@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("Score").value;
+    var r = document.getElementById("Radius").value;
+    
+    if(x  == 100){
+      drawCircle(r);
+  
+       else if(x>=80 && x<=99){
+       drawEllipse(r, x);
+       }
+       else if(x<80 && x>=4)
+       {
+        drawPolygon(x);
+       }
+    }
+    else{
+      alert("Enter Score between 1-100");
+    }
+  function drawCircle(r){
+    circleRadius = r;
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect (0, 0, 500, 300);
+    ctx.beginPath();
+    ctx.arc(250, 150, circleRadius, 0, 2 * Math.PI);
+    ctx.strokeStyle = "orange";
+    ctx.stroke();
+  }
+
+  function drawEllipse(r, x){
+    radiusX = r;
+    currentScore= x;
+
+    totalScore= 100;
+    dif= totalScore - currentScore;
+    difPercent = dif/100;
+    radiusY = radiusX + difPercent;
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect (0, 0, 500, 300);
+    ctx.beginPath();
+    ctx.ellipse(250, 150, radiusX, radiusY, 0 * Math.PI/180, 0, 2 * Math.PI); ctx.stroke();
+    ctx.strokeStyle = "orange";
+    ctx.stroke();
+  }
+
+  function drawPolygon(x){
+    var c = document.getElementById('myCanvas');
+    c.width = c.width;
+    var cxt = c.getContext("2d");
+    cxt.clearRect (0, 0, 500, 300);
+    var numberOfSides = x;
+            size = 80,
+            Xcenter = c.width/2,
+            Ycenter = c.height/2;
+    cxt.beginPath();
+    cxt.moveTo (Xcenter +  size * Math.cos(0), Ycenter +  size *  Math.sin(0));
+    for (var i = 1; i <= numberOfSides;i += 1) {
+      cxt.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+    }
+
+    cxt.strokeStyle = "orange";
+    cxt.lineWidth = 3;
+    cxt.stroke();
+  }
+
+</script>
+
+<body>
+  <div>
+    Score: <input type="text" name="Score" id="Score" min="0" max="100">
+    Radius: <input type="text" name="Radius" id="Radius">
+    <button onclick="myFunction()">Submit</button>
+  </div>
+
+<br>
+  <canvas id="myCanvas" width="500" height="300" style="border:2px solid #030313;"></canvas>
+
+</body>
+
+</html>
