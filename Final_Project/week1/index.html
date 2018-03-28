@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<style>
+ @import url("https://fonts.googleapis.com/css?family=Montserrat:300,700");
+/* Variables */
+/* General Styles */
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FAFAFA;
+  background-color: #F8EAAB;
+  background-color: #D9AF5F;
+  background-color: #F0e1b9;
+  background-color: white;
+
+}
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 150px;
+  margin: .5em 0;
+  padding: 1em 2em;
+  border-radius: 1.5em;
+  -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  font-size: 1em;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background-color: #0DA063;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+}
+.button:focus {
+  -webkit-box-shadow: 0 0 0 2px #0DA063;
+          box-shadow: 0 0 0 2px #0DA063;
+  outline: none;
+}
+
+/* Header */
+.header {
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  padding: 10px 2vw;
+  font-weight:bold;
+}
+
+.header__logo {
+  text-transform: uppercase;
+}
+.header__logo h1 {
+  color: #CF2C40;
+  line-height: 1.25em;
+  margin: 0;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.icon {
+  height: 40px;
+  width: 40px;
+  fill: #CF2C40;
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+.icon:hover, .icon:focus {
+  fill: rgba(207, 44, 64, 0.75);
+}
+
+.header__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 400px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  z-index: 2;
+}
+.header__button span {
+  color: #333333;
+  font-size: 2em;
+  font-weight: bold;
+  margin-right: 20px;
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+  text-transform: uppercase;
+}
+.header__button span:hover, .header__button span:focus {
+  color: rgba(51, 51, 51, 0.75);
+}
+
+/* Menu */
+.menu {
+  display: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: fixed;
+  background: #CF2C40;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  padding-top: 120px;
+  z-index: 1;
+}
+
+.menu__item {
+  list-style: none;
+  padding: 10px 0;
+}
+.menu__item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #FFFFFF;
+}
+.menu__item svg {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #FFFFFF;
+  padding: 20px;
+  width: 80px;
+  height: auto;
+  margin-right: 20px;
+}
+
+/* When menu is open*/
+.menu--is-open .menu {
+  display: block;
+  -webkit-animation: slideLeft .4s ease-in-out forwards;
+          animation: slideLeft .4s ease-in-out forwards;
+}
+.menu--is-open .header__button span {
+  color: #FFFFFF;
+}
+.menu--is-open .header__button span:hover, .menu--is-open .header__button span:focus {
+  color: rgba(255, 255, 255, 0.75);
+}
+.menu--is-open .icon {
+  fill: #FFFFFF;
+}
+.menu--is-open .icon:hover, .menu--is-open .icon:focus {
+  fill: rgba(255, 255, 255, 0.75);
+}
+
+/* Grid */
+.container {
+  width: 70vw;
+  max-width: 780px;
+  margin: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  left: 0;
+}
+
+.container--slipped {
+  width: calc(100% - 400px);
+  left: -200px;
+  padding: 0 20px;
+  -webkit-transition: left .2s .1s ease-in;
+  transition: left .2s .1s ease-in;
+}
+
+/* Burger grid */
+.burger {
+  height: calc(100vh - 200px);
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 100%;
+}
+
+@media screen and (min-width: 960px) {
+  .burger {
+    grid-auto-flow: column;
+    grid-column-gap: 40px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+burger__image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-animation: burger--entrance .4s ease-in-out;
+          animation: burger--entrance .4s ease-in-out;    
+}
+
+burger__image .burger__pic {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  max-width: 350px;
+}
+
+.burger__info {
+  color: #333333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.burger__name {
+  margin-bottom: 6px;
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+.burger__description {
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
+
+.burger__button {
+  width: 180px;
+}
+
+/* Animations */
+@-webkit-keyframes slideLeft {
+  0% {
+    right: -400px;
+  }
+  85% {
+    right: 20px;
+  }
+  100% {
+    right: 0;
+  }
+}
+@keyframes slideLeft {
+  0% {
+    right: -400px;
+  }
+  85% {
+    right: 20px;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+</style>
+    <title> Test </title>
+</head>
+<body>
+<header class="header">
+    <a href="" class="header__logo">
+        <!--h1>The</h1-->
+        <h1>Final Project</h1>
+    </a>
+    
+    <a href="" class="header__button">  
+        <span>Take a LOOK</span>
+        <svg class="icon" viewBox="0 0 100 77" version="1.1">
+    <title>Menu</title>
+    <rect id="Line-3" class="hamburger__line" x="0" y="64" width="100" height="12" rx="4"></rect>
+    <rect id="Line-2" class="hamburger__line" x="0" y="32" width="100" height="12" rx="4"></rect>
+    <rect id="Line-1" class="hamburger__line" x="0" y="0" width="100" height="12" rx="4"></rect>
+</svg>
+    </a>
+    
+    <nav class="menu">
+        <ul>
+            <li class="menu__item">
+                <a href="part1.html">
+                <title> Projects Menu</title>
+                    <h2>Let's go to Part 1</h2>
+                </a>
+            </li>
+            <li class="menu__item ">
+                <a href="">
+                <h2>Let's go to Part 2</h2>
+                </a>
+            </li>
+            <li class="menu__item ">
+                <a href="">
+                    <h2>Coming up: Part 3</h2>
+                </a>
+            </li>
+            <li class="menu__item ">
+                <a href="">
+                    <h2>Coming Up: Part 4</h2>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+</header>
+
+<main class="container">
+    
+    <article class="burger">
+        <section class="burger__image">
+
+        </section>
+        <section class="burger__info">
+            <h2 class="burger__name">Computer Graphics</h2>
+            <p class="burger__description">This is the implementation page! 
+            Developed by Vishal Gadiraju</p>
+            <a href="" id="btnOrder" class="button burger__button">View Code
+            </a>
+        </section>
+    </article>  
+</main>
+<script>
+    $(".header__button").click(function() {
+    $(".container").toggleClass("container--slipped");
+    $(".header").toggleClass("menu--is-open");
+    return false;
+});
+
+var bunUp = document.getElementById("bun-up"),
+    lettuce = document.getElementById("lettuce"),
+    pattyCheese = document.getElementById("pattyCheese"),
+    tlc = new TimelineLite();
+tld = new TimelineLite();
+tle = new TimelineLite();
+
+tlc.fromTo(bunUp, 0.6, { y: 0 }, { y: -60, ease: Elastic.easeIn });
+
+tld.fromTo(lettuce, 0.6, { y: 0 }, { y: -30, ease: Elastic.easeIn });
+
+tle.fromTo(pattyCheese, 0.6, { y: 0 }, { y: -15, ease: Elastic.easeIn });
+
+btnOrder.onmouseout = function(e) {
+    tlc.reverse();
+    tld.reverse();
+    tle.reverse();
+};
+
+btnOrder.onmouseover = function(e) {
+    tlc.play();
+    tld.play();
+    tle.play();
+};
+
+</script>
+<footer><center> <h4>Vishal_Gadiraju@student.uml.edu </h4><center></footer>
+</body>
+</html>

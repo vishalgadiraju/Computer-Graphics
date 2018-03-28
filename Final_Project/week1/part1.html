@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="layout.css">
+	<title>Part1</title>
+<style>
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+* { box-sizing: border-box }
+
+.slider{
+	border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+<!--div style="background-color:black;color:white;padding:9px;"-->
+<header class="main">
+<h1 style="color:#CF2C40;text-align: center;margin-top: 20px;">2D Transformations On Front /Side/ Top Elevations</h2><br>
+</header> 
+<div id="maindiv" class="clearfix">
+<div id="divfront" style="float:left;width:50%;border: 1px  grey;box-shadow: 0px 0px 3px"> 
+
+<div id="divfrontsvg" style="overflow:hidden"> 
+
+<h3 style="color:#CF2C40;text-align: center;">Front View</h4>
+<svg id="front" height="320" width="650" style="">	
+<rect x="116" y="134" width="30" height="37"
+style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.7";transform ='translate(200,100)'" />
+<rect x="174" y="134" width="30" height="37"
+style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.7" />
+
+<circle cx="131" cy="153" r="13" stroke="black" stroke-width="1" fill="blue" />
+<circle cx="135" cy="157" r="7" stroke="black" stroke-width="2" fill="black" />  
+<circle cx="189" cy="153" r="13" stroke="black" stroke-width="1" fill="blue" />
+<circle cx="193" cy="157" r="7" stroke="black" stroke-width="2" fill="black" />
+
+<path d="M 143 205 C 121 235, 195 241, 182 205" stroke-width="2" stroke="blue" fill="transparent"/>
+<line x1="143" y1="205" x2="182" y2="205" style="stroke:blue;stroke-width:2" />
+
+<rect x="145" y="207" width="5" height="7"
+style="fill:blue;stroke:black;stroke-width:2;opacity:0.5" />
+<rect x="157" y="207" width="5" height="7"
+style="fill:blue;stroke:black;stroke-width:2;opacity:0.5" />
+<rect x="169" y="207" width="5" height="7"
+style="fill:blue;stroke:black;stroke-width:2;opacity:0.5" />
+<rect x="150" y="220" width="5" height="7"
+style="fill:blue;stroke:black;stroke-width:2;opacity:0.5" />
+<rect x="164" y="220" width="5" height="7"
+style="fill:blue;stroke:black;stroke-width:2;opacity:0.5" />
+
+<line x1="100" y1="133" x2="100" y2="252" style="stroke:blue;stroke-width:3" />
+<line x1="221" y1="252" x2="98" y2="252" style="stroke:blue;stroke-width:3" />
+<line x1="163" y1="83" x2="240" y2="149" style="stroke:blue;stroke-width:3" />
+<line x1="165" y1="83" x2="83" y2="149" style="stroke:blue;stroke-width:3" />
+<line x1="219" y1="133" x2="219" y2="252" style="stroke:blue;stroke-width:3" />
+<line x1="185" y1="49" x2="185" y2="100" style="stroke:blue;stroke-width:3" />
+<line x1="210" y1="49" x2="210" y2="125" style="stroke:blue;stroke-width:3" />
+<line x1="212" y1="49" x2="183" y2="49" style="stroke:blue;stroke-width:3" />
+</svg> 
+</div>
+
+<div id="divfronttrans" style="padding-left: 30px; padding-bottom: 30px"> 
+<h3 style="color:#CF2C40; text-align: center;">Front View Transformations</h3> <br>
+<text style="float:left">Translate : <input type="range" id="trans" min="100" max="400" value="100" onchange="funcfronttrans(this.value)"></text>
+<text style="float:right;"><label for="trans" oninput="trans.value=funcfronttrans.value">Value :</label> <input id="ftrans" type="text" name="fname" value="100"></text><br><br>
+<text style="float:left">Rotate : <input type="range" id="trans"  min="0" max="360"value="0" onchange="funcfrontrot(this.value)"></text>
+<text style="float:right">Value : <input id="frot" type="text" name="fname" value="0 deg"></text><br><br>
+<text style="float:left">Scale : <input type="range" id="trans"  min="1" max="2" step='0.05' value="1" onchange="funcfrontscale(this.value)"></text>
+<text style="float:right">Value : <input id="fscale" type="text" name="fname" value="1"></text><br><br>
+<text style="float:left">Shear : <input type="range" id="trans"  min="0" max="360"value="0" onchange="funcfrontshear(this.value)"></text>
+<text style="float:right">Value : <input id="fskew" type="text" name="fname" value="0 deg"></text><br>
+</div>
+</div>
+
+<div id="divside" style="float:left;width:50%; border: 1px;box-shadow: 0px 0px 5px">
+<div id="divsidesvg" style="overflow:hidden"> 
+<h4 style="color:#CF2C40;text-align: center;">Side View</h4>
+<svg id="side" width="650" height="320">
+<rect x="145" y="70" width="150" height="72"
+style="fill:white;stroke:Blue;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="171" y="142" width="100" height="110"
+style="fill:white;stroke:Blue;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="188" y="49" width="67" height="20"
+style="fill:white;stroke:Blue;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="182" y="159" width="30" height="37"
+style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.7" />
+<rect x="230" y="159" width="30" height="37"
+style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.7" />
+</svg>
+</div>
+
+<div id="divsidetrans" style="padding-left: 30px; padding-bottom: 30px;"> 
+<h3 style="color:#CF2C40; text-align: center">Side View Transformations</h3><br>
+<text style="float:left">Translate : <input type="range" id="trans" min="100" max="360"value="100" onchange="funcsidetrans(this.value)"></text>
+<text style="float:right">Value : <input id="strans" type="text" name="fname" value="100"></text><br><br>
+<text style="float:left">Rotate : <input type="range" id="trans"  min="0" max="360"value="0" onchange="funcsiderot(this.value)"></text>
+<text style="float:right">Value : <input id="srot" type="text" name="fname" value="0 deg"></text><br><br>
+<text style="float:left">Scale : <input type="range" id="rrans"  min="1" max="2" step='0.05' value="1" onchange="funcsidescale(this.value)"></text>
+<text style="float:right">Value : <input id="sscale" type="text" name="fname" value="1"></text><br><br>
+<text style="float:left">Shear : <input type="range" id="trans"  min="0" max="360"value="0" onchange="funcsideshear(this.value)"></text>
+<text style="float:right">Value : <input id="sskew" type="text" name="fname" value="0 deg"></text><br>
+</div>
+</div>
+<div id="divtop" style="float:left;width:50%;border: 1px;box-shadow: 0px 0px 5px; align-items: center;">
+<div id="divtopsvg" style="overflow:hidden"><br>
+<h4 style="color:#CF2C40; text-align: center;">Top View</h4>
+<svg id="top" height="320" width="650">	
+<rect x="80" y="75" width="173" height="133"
+style="fill:white;stroke:Blue;stroke-width:3;fill-opacity:0.1;stroke-opacity:1" />
+  
+<line x1="162" y1="74" x2="162" y2="210" style="stroke:rgb(0,0,255);stroke-width:3" />
+  
+<rect x="192" y="122" width="30" height="37"
+style="fill:blue;stroke:Blue;stroke-width:3;fill-opacity:0.1;stroke-opacity:1" />
+  
+<path d="M10 10"/>
+</svg> 
+</div>
+
+<div id="divtoptrans" style="padding-left: 30px; padding-bottom: 30px"> 
+<h3 style="color:#CF2C40; text-align: center;">Top View Transformations</h3><br>
+<text style="float:left">Translate : </span><input type="range" id="trans" min="100" max="400"value="100" onchange="functoptrans(this.value)"></text> 
+<text style="float:right">Value : </span><input id="ttrans" type="text" name="fname" value="100"></text><br><br>
+<text style="float:left">Rotate : <input type="range" id="trans"  min="0" max="360"value="0" onchange="functoprot(this.value)"></text>
+<text style="float:right">Value : <input id="trot" type="text" name="fname" value="0 deg"></text><br><br>
+<text style="float:left">Scale : <input type="range" id="trans" min="1" max="2" step='0.05' value="1" onchange="functopscale(this.value)"></text>
+<text style="float:right">Value : <input id="tscale" type="text" name="fname" value="1"></text><br><br>
+<text style="float:left">Shear : <input type="range" id="trans"  min="0" max="360"value="0" onchange="functopshear(this.value)"></text>
+<text style="float:right">Value : <input id="tskew" type="text" name="fname" value="0 deg"></text><br><br>
+</div>
+</div>
+</div>
+<br><br>
+
+<script>
+
+//functions to perform 2D transformations on front view
+function funcfronttrans(value) {
+document.getElementById("ftrans").value=value;
+var x = value;
+var y="translate("+x+"px,0px)";
+document.getElementById("front").style.transform = y;
+}
+	
+function funcfrontrot(value) {
+var i=value+" deg";
+document.getElementById("frot").value=i;
+var x = value;
+var y="rotate("+x+"deg)";
+document.getElementById("front").style.transform = y;
+//document.getElementById("front").style.transform = "rotate(20deg)";
+}
+	
+function funcfrontscale(value) {
+document.getElementById("fscale").value=value;
+var x = value;
+var y="scale("+x+","+x+")";
+document.getElementById("front").style.transform = y;
+}
+	
+function funcfrontshear(value) {
+var i=value+" deg";
+document.getElementById("fskew").value=i;
+var x = value;
+var y="skewX("+x+"deg)";
+document.getElementById("front").style.transform = y;
+}
+	
+//functions to perform 2D transformations on side view
+function funcsidetrans(value) {
+document.getElementById("strans").value=value;
+var x = value;
+var y="translate("+x+"px,0px)";
+document.getElementById("side").style.transform = y;
+}
+	
+function funcsiderot(value) {
+var i=value+" deg";
+document.getElementById("srot").value=i;
+var x = value;
+var y="rotate("+x+"deg)";
+document.getElementById("side").style.transform = y;
+}
+	
+function funcsidescale(value) {
+document.getElementById("sscale").value=value;
+var x = value;
+var y="scale("+x+","+x+")";
+document.getElementById("side").style.transform = y;
+}
+	
+function funcsideshear(value) {
+var i=value+" deg";
+document.getElementById("sskew").value=i;
+var x = value;
+var y="skewX("+x+"deg)";
+document.getElementById("side").style.transform = y;
+}
+	
+//functions to perform 2D transformations on top view
+	
+function functoptrans(value) {
+document.getElementById("ttrans").value=value;
+var x = value;
+var y="translate("+x+"px,0px)";
+document.getElementById("top").style.transform = y;
+}
+	
+function functoprot(value) {
+var i=value+" deg";
+document.getElementById("trot").value=i;
+var x = value;
+var y="rotate("+x+"deg)";
+document.getElementById("top").style.transform = y;
+}
+	
+function functopscale(value) {
+document.getElementById("tscale").value=value;
+var x = value;
+var y="scale("+x+","+x+")";
+document.getElementById("top").style.transform = y;
+}
+	
+function functopshear(value) {
+var i=value+" deg";
+document.getElementById("tskew").value=i;
+var x = value;
+var y="skewX("+x+"deg)";
+document.getElementById("top").style.transform = y;
+}
+
+</script>
+</body>
+</html>
