@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+<style>
+ @import url("https://fonts.googleapis.com/css?family=Montserrat:300,700");
+/* Variables */
+/* General Styles */
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FAFAFA;
+  background-color: #F8EAAB;
+  background-color: #D9AF5F;
+  background-color: #F0e1b9;
+  background-color: white;
+
+}
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 150px;
+  margin: .5em 0;
+  padding: 1em 2em;
+  border-radius: 1.5em;
+  -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  font-size: 1em;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background-color: #0DA063;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+}
+.button:focus {
+  -webkit-box-shadow: 0 0 0 2px #0DA063;
+          box-shadow: 0 0 0 2px #0DA063;
+  outline: none;
+}
+
+/* Header */
+.header {
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  padding: 10px 2vw;
+  font-weight:bold;
+}
+
+.header__logo {
+  text-transform: uppercase;
+}
+.header__logo h1 {
+  color: #CF2C40;
+  line-height: 1.25em;
+  margin: 0;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.icon {
+  height: 40px;
+  width: 40px;
+  fill: #CF2C40;
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+.icon:hover, .icon:focus {
+  fill: rgba(207, 44, 64, 0.75);
+}
+
+.header__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 400px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  z-index: 2;
+}
+.header__button span {
+  color: #333333;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  margin-right: 20px;
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+  text-transform: uppercase;
+}
+.header__button span:hover, .header__button span:focus {
+  color: rgba(51, 51, 51, 0.75);
+}
+
+/* Menu */
+.menu {
+  display: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: fixed;
+  background: #CF2C40;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  padding-top: 120px;
+  z-index: 1;
+}
+
+.menu__item {
+  list-style: none;
+  padding: 10px 0;
+}
+.menu__item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #FFFFFF;
+}
+.menu__item svg {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #FFFFFF;
+  padding: 20px;
+  width: 80px;
+  height: auto;
+  margin-right: 20px;
+}
+
+/* When menu is open*/
+.menu--is-open .menu {
+  display: block;
+  -webkit-animation: slideLeft .4s ease-in-out forwards;
+          animation: slideLeft .4s ease-in-out forwards;
+}
+.menu--is-open .header__button span {
+  color: #FFFFFF;
+}
+.menu--is-open .header__button span:hover, .menu--is-open .header__button span:focus {
+  color: rgba(255, 255, 255, 0.75);
+}
+.menu--is-open .icon {
+  fill: #FFFFFF;
+}
+.menu--is-open .icon:hover, .menu--is-open .icon:focus {
+  fill: rgba(255, 255, 255, 0.75);
+}
+
+/* Grid */
+.container {
+  width: 70vw;
+  max-width: 780px;
+  margin: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  left: 0;
+}
+
+.container--slipped {
+  width: calc(100% - 400px);
+  left: -200px;
+  padding: 0 20px;
+  -webkit-transition: left .2s .1s ease-in;
+  transition: left .2s .1s ease-in;
+}
+
+/* Burger grid */
+.burger {
+  height: calc(100vh - 200px);
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 100%;
+}
+
+@media screen and (min-width: 960px) {
+  .burger {
+    grid-auto-flow: column;
+    grid-column-gap: 40px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+burger__image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-animation: burger--entrance .4s ease-in-out;
+          animation: burger--entrance .4s ease-in-out;    
+}
+
+burger__image .burger__pic {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  max-width: 350px;
+}
+
+.burger__info {
+  color: #333333;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.burger__name {
+  margin-bottom: 6px;
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+.burger__description {
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
+
+.burger__button {
+  width: 180px;
+}
+
+/* Animations */
+@-webkit-keyframes slideLeft {
+  0% {
+    right: -400px;
+  }
+  85% {
+    right: 20px;
+  }
+  100% {
+    right: 0;
+  }
+}
+@keyframes slideLeft {
+  0% {
+    right: -400px;
+  }
+  85% {
+    right: 20px;
+  }
+  100% {
+    right: 0;
+  }
+}
+body {
+  margin: 0;
+  background: #7ee9f2;
+  background-color: #231F2B;
+  background-color: black;
+  }	
+
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .invisible-Box {
+  width: 295px;
+  height: 397px;
+  position: relative;
+  overflow: hidden;
+}
+.container .invisible-Box .cloud-1, .container .invisible-Box .cloud-2 {
+  position: absolute;
+  background: #FFF;
+  border-radius: 50%;
+}
+.container .invisible-Box .cloud-1:after, .container .invisible-Box .cloud-1:before, .container .invisible-Box .cloud-2:after, .container .invisible-Box .cloud-2:before {
+  content: '';
+  top: 50%;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  background: #fff;
+  z-index: -1;
+}
+.container .invisible-Box .cloud-1:after, .container .invisible-Box .cloud-2:after {
+  background: #EFF2F3;
+}
+.container .invisible-Box .cloud-1 {
+  top: 23%;
+  width: 40px;
+  height: 26px;
+  animation: wind 15s linear infinite alternate-reverse;
+}
+.container .invisible-Box .cloud-1:before {
+  width: 20px;
+  height: 15px;
+  left: -10px;
+}
+.container .invisible-Box .cloud-1:after {
+  width: 25px;
+  height: 18px;
+  right: -10px;
+}
+.container .invisible-Box .cloud-2 {
+  width: 35px;
+  height: 22px;
+  top: 8%;
+  animation: wind 10s linear infinite alternate;
+}
+.container .invisible-Box .cloud-2:before {
+  width: 15px;
+  height: 10px;
+  left: -7px;
+}
+.container .invisible-Box .cloud-2:after {
+  width: 20px;
+  height: 13px;
+  right: -6px;
+}
+.container .invisible-Box .trees {
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  position: absolute;
+  z-index: 1;
+  position: relative;
+}
+.container .invisible-Box .trees .tree {
+  top: 25%;
+  left: 6%;
+  bottom: 0;
+  width: 25%;
+  background: #0A785C;
+  position: absolute;
+  transform: translateX(-6%);
+  clip-path: polygon(50% 0%, 0 100%, 100% 100%);
+  z-index: 2;
+}
+.container .invisible-Box .trees .tree .vertical-line {
+  padding: 0;
+  top: 20%;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #064F3A;
+  position: absolute;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 0%, 0 100%, 100% 100%);
+  z-index: 3;
+}
+.container .invisible-Box .trees .tree ul li {
+  top: 40%;
+  left: 50%;
+  width: 18%;
+  height: 0.3%;
+  background: #064F3A;
+  display: block;
+  transform: rotate(20deg);
+  position: absolute;
+  z-index: 3;
+}
+.container .invisible-Box .trees .tree ul li:after {
+  content: "";
+  bottom: -40px;
+  left: -15px;
+  width: 30px;
+  height: 1px;
+  display: block;
+  background: #064F3A;
+  transform: rotate(-45deg);
+  position: absolute;
+  z-index: 3;
+}
+.container .invisible-Box .trees .tree ul li:nth-child(2) {
+  top: 50%;
+  transform: rotate(25deg);
+  width: 22%;
+}
+.container .invisible-Box .trees .tree ul li:nth-child(2):after {
+  transform: rotate(-50deg);
+}
+.container .invisible-Box .trees .tree ul li:nth-child(3) {
+  top: 60%;
+  width: 25%;
+  transform: rotate(25deg);
+}
+.container .invisible-Box .trees .tree ul li:nth-child(3):after {
+  transform: rotate(-50deg);
+}
+.container .invisible-Box .trees .tree:nth-child(2) {
+  top: 40%;
+  left: 27%;
+  width: 20%;
+  background: #0C614B;
+  transform: translateX(-27%);
+  z-index: 1;
+}
+.container .invisible-Box .trees .tree:nth-child(3) {
+  top: 0%;
+  left: 53%;
+  width: 35%;
+  background: #0A785C;
+  transform: translateX(-53%);
+  z-index: 2;
+}
+.container .invisible-Box .trees .tree:nth-child(4) {
+  top: 10%;
+  left: 80%;
+  background: #0C614B;
+  transform: translateX(-80%);
+  z-index: 1;
+}
+.container .invisible-Box .trees .tree:nth-child(5) {
+  top: 55%;
+  left: 90%;
+  width: 15%;
+  background: #0A785C;
+  transform: translateX(-90%);
+  z-index: 1;
+}
+.container .invisible-Box .jungle, .container .invisible-Box .jungle-5 {
+  bottom: 23px;
+  left: 17px;
+  width: 70px;
+  height: 26px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+}
+.container .invisible-Box .jungle .one, .container .invisible-Box .jungle-5 .one {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  border-radius: 30px;
+  background: #509754;
+  position: relative;
+}
+.container .invisible-Box .jungle .one:before, .container .invisible-Box .jungle-5 .one:before {
+  content: '';
+  bottom: 0;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background: #509754;
+  position: absolute;
+}
+.container .invisible-Box .jungle .two, .container .invisible-Box .jungle-5 .two {
+  right: 15px;
+  bottom: -5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 30px;
+  background: #509754;
+  position: absolute;
+}
+.container .invisible-Box .jungle .two:after, .container .invisible-Box .jungle-5 .two:after {
+  content: '';
+  bottom: 0;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background: #509754;
+  position: absolute;
+}
+.container .invisible-Box .jungle-2, .container .invisible-Box .jungle-4 {
+  bottom: 23px;
+  left: 75px;
+  width: 40px;
+  height: 16px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 3;
+}
+.container .invisible-Box .jungle-2 .one, .container .invisible-Box .jungle-4 .one {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  border-radius: 30px;
+  background: #55A65D;
+  position: relative;
+}
+.container .invisible-Box .jungle-2 .one:before, .container .invisible-Box .jungle-4 .one:before {
+  content: '';
+  bottom: 0;
+  left: -10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 30px;
+  background: #55A65D;
+  position: absolute;
+}
+.container .invisible-Box .jungle-2 .one:after, .container .invisible-Box .jungle-4 .one:after {
+  content: '';
+  bottom: 0;
+  right: -10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 30px;
+  background: #55A65D;
+  position: absolute;
+}
+.container .invisible-Box .jungle-3 {
+  bottom: 22px;
+  left: 110px;
+  width: 45px;
+  height: 23px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 4;
+}
+.container .invisible-Box .jungle-3 .one {
+  width: 25px;
+  height: 25px;
+  margin: auto;
+  border-radius: 30px;
+  background: #83C688;
+  position: relative;
+}
+.container .invisible-Box .jungle-3 .one:before {
+  content: '';
+  bottom: 0;
+  left: -10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 30px;
+  background: #83C688;
+  position: absolute;
+}
+.container .invisible-Box .jungle-3 .one:after {
+  content: '';
+  bottom: 0;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 30px;
+  background: #83C688;
+  position: absolute;
+}
+.container .invisible-Box .camp {
+  left: 140px;
+  bottom: 23px;
+  width: 40px;
+  height: 28px;
+  background: #FFCF69;
+  position: absolute;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  z-index: 2;
+}
+.container .invisible-Box .camp:before {
+  content: '';
+  bottom: 0;
+  left: 50%;
+  width: 9px;
+  height: 10px;
+  background: #8F5E31;
+  position: absolute;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.container .invisible-Box .camp:after {
+  content: '';
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  left: 50%;
+  position: absolute;
+  opacity: 0.6;
+  border-left: 0.5px dashed #8F5E31;
+  transform: translateX(-50%);
+}
+.container .invisible-Box .jungle-4 {
+  left: 170px;
+}
+.container .invisible-Box .jungle-5 {
+  left: 208px;
+}
+.container .invisible-Box .floar {
+  bottom: 17px;
+  left: 12px;
+  right: 12px;
+  height: 6px;
+  border-radius: 17px;
+  background: #69C36D;
+  position: absolute;
+  z-index: 2;
+}
+.container .invisible-Box .duck {
+  bottom: 19px;
+  left: -10px;
+  width: 100%;
+  position: absolute;
+  animation: duck 15s linear 1s infinite;
+}
+.container .invisible-Box .duck.d-2 {
+  animation: duck 10s linear infinite;
+}
+.container .invisible-Box .duck.d-3 {
+  animation: duck 12s linear infinite;
+}
+.container .invisible-Box .duck .throat {
+  top: -4.5px;
+  left: 9px;
+  position: absolute;
+  height: 3px;
+  width: 5px;
+  border: 2px solid transparent;
+  border-left-color: #fff;
+  border-right-color: red;
+  border-top-color: #fff;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  transform: rotate(-45deg);
+  z-index: 999;
+}
+.container .invisible-Box .duck .body {
+  width: 12px;
+  height: 5px;
+  background: #fff;
+  position: absolute;
+  clip-path: polygon(100% 0, 100% 49%, 100% 100%, 0 87%, 33% 50%, 0 0);
+  z-index: 999;
+}
+.container .invisible-Box .water {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 17px;
+  border-radius: 17px;
+  background: #249ae7;
+  position: absolute;
+  z-index: 2;
+}
+
+@keyframes wind {
+  from {
+    left: 5%;
+  }
+  to {
+    left: 80%;
+  }
+}
+@keyframes duck {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+
+
+</style>
+    <title> Test </title>
+</head>
+<body>
+<header class="header">
+    <a href="" class="header__logo">
+        <!--h1>The</h1-->
+        <h1>Final Project</h1>
+    </a>
+    
+    <a href="" class="header__button">  
+        <span>Take a LOOK</span>
+        <svg class="icon" viewBox="0 0 100 77" version="1.1">
+    <title>Menu</title>
+    <rect id="Line-3" class="hamburger__line" x="0" y="64" width="100" height="12" rx="4"></rect>
+    <rect id="Line-2" class="hamburger__line" x="0" y="32" width="100" height="12" rx="4"></rect>
+    <rect id="Line-1" class="hamburger__line" x="0" y="0" width="100" height="12" rx="4"></rect>
+</svg>
+    </a>
+    
+    <nav class="menu">
+        <ul>
+            <li class="menu__item">
+                <a href="part1.html">
+                <title> Projects Menu</title>
+                    <h2>Let's go to Part 1</h2>
+                </a>
+            </li>
+            <li class="menu__item ">
+                <a href="part2.html">
+                <h2>Let's go to Part 2</h2>
+                </a>
+            </li>
+            <li class="menu__item ">
+                <a href="">
+                    <h2>Coming up: Part 3</h2>
+                </a>
+            </li>
+            <li class="menu__item ">
+                <a href="">
+                    <h2>Coming Up: Part 4</h2>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+</header>
+
+          <div class="container">
+              <div class="invisible-Box">
+                <div class="cloud-1"></div>
+                <div class="cloud-2"></div>
+                 <div class="trees">
+                  <div class="tree">0
+                  <div class="vertical-line"></div>
+                  <ul>
+                  <li>0</li>
+                  <li>1</li>
+                  <li>2</li>
+                </ul>
+                </div>
+                <div class="tree">1
+                <div class="vertical-line"></div>
+                <ul>
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+      </div>
+      <div class="tree">2
+        <div class="vertical-line"></div>
+        <ul>
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+      </div>
+      <div class="tree">3
+        <div class="vertical-line"></div>
+        <ul>
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+      </div>
+      <div class="tree">4
+        <div class="vertical-line"></div>
+        <ul>
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+      </div>
+    </div>
+    <div class="jungle">
+      <div class="one"></div>
+      <div class="two"></div>
+    </div>
+    <div class="jungle-2">
+      <div class="one"></div>
+    </div>
+    <div class="jungle-3">
+      <div class="one"></div>
+    </div>
+    <div class="camp"></div>
+    <div class="jungle-4">
+      <div class="one"></div>
+    </div>
+    <div class="jungle-5">
+      <div class="one"></div>
+      <div class="two"></div>
+    </div>
+    <div class="floar"></div>
+    <div class="duck">
+      <div class="throat"></div>
+      <div class="body"></div>
+    </div>
+    <div class="duck d-2">
+      <div class="throat"></div>
+      <div class="body"></div>
+    </div>
+    <div class="duck d-3">
+      <div class="throat"></div>
+      <div class="body"></div>
+    </div>
+    <div class="water"></div>
+  </div>
+
+        <section class="burger__info">
+            <h2 class="burger__name">Computer Graphics</h2>
+            <p class="burger__description">This is the implementation page! 
+            Developed by Vishal Gadiraju</p>
+            <a href="https://github.com/vishalgadiraju/Computer-Graphics/tree/master/Final_Project/" id="btnOrder" class="button burger__button">View Code
+            <i class="fab fa-github"></i></a>
+  </div>   
+  </section>
+  </article>  
+</main>
+<script>
+    $(".header__button").click(function() {
+    $(".container").toggleClass("container--slipped");
+    $(".header").toggleClass("menu--is-open");
+    return false;
+});
+
+var bunUp = document.getElementById("bun-up"),
+    lettuce = document.getElementById("lettuce"),
+    pattyCheese = document.getElementById("pattyCheese"),
+    tlc = new TimelineLite();
+tld = new TimelineLite();
+tle = new TimelineLite();
+
+tlc.fromTo(bunUp, 0.6, { y: 0 }, { y: -60, ease: Elastic.easeIn });
+
+tld.fromTo(lettuce, 0.6, { y: 0 }, { y: -30, ease: Elastic.easeIn });
+
+tle.fromTo(pattyCheese, 0.6, { y: 0 }, { y: -15, ease: Elastic.easeIn });
+
+btnOrder.onmouseout = function(e) {
+    tlc.reverse();
+    tld.reverse();
+    tle.reverse();
+};
+
+btnOrder.onmouseover = function(e) {
+    tlc.play();
+    tld.play();
+    tle.play();
+};
+
+</script>
+<footer> <center> <h4 style="color:white"> Vishal_Gadiraju@student.uml.edu | </h4><center></footer>
+</body>
+</html>
