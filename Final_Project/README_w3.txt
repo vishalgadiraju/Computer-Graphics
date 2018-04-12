@@ -1,0 +1,23 @@
+Vishal Gadiraju
+Final Project - Week 2
+vishal_gadiraju@student.uml.edu
+
+1. "index.html" is the starting point of the project
+
+2. "Menu" is provided on the right hand top-corner of this page which directs to each iteration (weekly progress) 
+
+3. "Part 1" represents week 1's progress and so on
+
+4. Created a new 3d object Sphere
+
+5. Applied Rotation for X,Y,Z coordinates
+
+6. Implemented Scaling
+
+7. Texture Mapping for Sphere
+
+Impress Me:
+
+-Improved Controls
+- variety of textures to select
+- provided textures in various qualities
