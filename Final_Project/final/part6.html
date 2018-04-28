@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="lighting.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+
+<style type="text/css">
+body {
+  color: #CF2C40;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+body {
+
+  /* SVG fallback for IE 9 (could be data URI, or could use filter) */
+  background-image: url(fallback-gradient.svg);
+  
+  /* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+  background-image: -webkit-gradient(linear, left top, right top, from(red), to(#f06d06));
+  
+  /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+  background-image: -webkit-linear-gradient(left, red, #f06d06);
+  
+  /* Firefox 3.6 - 15 */
+  background-image: -moz-linear-gradient(left, red, #f06d06);
+  
+  /* Opera 11.1 - 12 */
+  background-image: -o-linear-gradient(left, red, #f06d06);
+  
+  /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+  background-image: linear-gradient(to right, red, #f06d06);
+  margin: 0px;
+  overflow: hidden;
+}
+#directions {
+  position: absolute;
+  color: white;
+  margin: 10px;
+}
+#directions span {
+  margin-left: 25px;
+
+}
+h2{
+	padding: 10px;
+	background-color: black;
+}
+</style>
+</head>
+<body>
+	<h2> <center> Take a City Tour </center></h2>
+	<div id="directions">
+  <span> Use Arrow Keys to Move: </span> </br> </br>  
+  <span> UP - move forward</span> </br>
+  
+  <span>DOWN - move backward</span> </br>
+  
+  <span>RIGHT - rotate right</span> </br>
+  
+  <span>LEFT - rotate left</span>
+</div>
+<script type="text/javascript">
+	const WIDTH = window.innerWidth;
+const HEIGHT = window.innerHeight - 10;
+let cameraStart = 8000;
+
+const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true
+});
+renderer.setSize(WIDTH, HEIGHT);
+//renderer.setClearColor('orange', .9);
+
+const scene = new THREE.Scene();
+const color = ['#8DA1B9', '#95ADB6', '#CBB3BF', '#DBC7BE', '#EF959C'];
+const cubes = [];
+
+init();
+
+function init() {
+    createStreet();
+    createStreetSide(250);
+    createStreetSide(-250)
+}
+
+// get a random color
+function randomColor() {
+    return color[Math.floor(Math.random() * color.length)];
+}
+
+// set a random position
+function randomPos() {
+    return {
+        x: Math.random() * WIDTH,
+        y: Math.random() * HEIGHT,
+        z: Math.random() * 1000
+    };
+}
+
+function createStreet() {
+    var street = createCube(WIDTH, 1, 15000, 'darkgrey');
+    street.position.setZ(3200);
+    scene.add(street);
+}
+
+function createStreetSide(x) {
+    let cube;
+    let z = 0;
+
+    for (let i = 0; i < 200; i++) {
+        cube = createCube(100, Math.random() * 850, 100, randomColor());
+
+        cube.position.set(x, 0, z);
+
+        scene.add(cube);
+
+        z += 100;
+    }
+}
+
+// Add Camera
+var camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, .1, 8000);
+camera.position.set(0, 45, cameraStart);
+scene.add(camera);
+
+// Add Light
+var pointLight = new THREE.PointLight(0x404040);
+pointLight.position.set(0, 500, cameraStart);
+scene.add(pointLight);
+
+// create cube
+function createCube(h, w, d, color) {
+    const cubeGeometry = new THREE.BoxGeometry(h, w, d);
+    const cubeMaterial = new THREE.MeshLambertMaterial({
+        color: color
+    });
+
+    return new THREE.Mesh(cubeGeometry, cubeMaterial);
+}
+
+const clock = new THREE.Clock();
+let delta;
+let dir = 'f';
+let currentDir = null;
+const DIRS = {
+    37: 'left',
+    38: 'up',
+    39: 'right',
+    40: 'down'
+}
+
+document.addEventListener('keydown', e => currentDir = DIRS[e.which]);
+
+document.addEventListener('keyup', e => {
+    if (currentDir) {
+        currentDir = null;
+    }
+});
+
+let rotate = 0;
+
+document.body.appendChild(renderer.domElement);
+
+// Animate things here
+(function render() {
+    renderer.render(scene, camera);
+
+    delta = clock.getDelta();
+
+    if (currentDir === 'up') {
+        cameraStart = cameraStart - 4
+        camera.position.setZ(cameraStart);
+        pointLight.position.setZ(cameraStart);
+    } else if (currentDir === 'down') {
+        cameraStart += 4
+        camera.position.setZ(cameraStart);
+    }
+
+    if (currentDir === 'right') {
+        rotate -= 0.04;
+        camera.rotation.y = rotate;
+        pointLight.rotation.y = rotate;
+    } else if (currentDir === 'left') {
+        rotate += 0.04;
+        camera.rotation.y = rotate;
+    }
+
+    requestAnimationFrame(render);
+})();
+</script>
+</body>
